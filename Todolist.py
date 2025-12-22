@@ -14,15 +14,6 @@ window = Tk()
 Main application window (Tkinter root window).
 
 :type: Tk
-:attributes:
-    - title: "To-Do List App"
-    - geometry: 500x550 pixels
-:contains:
-    - Title label
-    - Task list frame with listbox and scrollbar
-    - Three action buttons (Add, Delete, Mark as completed)
-:events:
-    - Handles all user interactions through the Tkinter event loop
 :raises tkinter.TclError: If window creation fails
 """
 window.title("To-Do List App")
@@ -34,21 +25,18 @@ work_var = IntVar()
 Variable to store the state of the Work checkbox.
 
 :type: IntVar
-:default: 0 (checked by default)
 """ 
 housework_var = IntVar()
 """
 Variable to store the state of the Housework checkbox.
 
 :type: IntVar
-:default: 0 (unchecked by default)
 """
 else_var = IntVar()
 """
 Variable to store the state of the Else checkbox.
 
 :type: IntVar
-:default: 0 (unchecked by default)
 """
 
 
@@ -123,15 +111,6 @@ def entertask():
         The Toplevel window for adding new tasks.
     
         :type: Toplevel
-        :attributes:
-        - title: "Add your task"
-        - geometry: 300x250 pixels
-        :contains:
-        - Label: "Enter your task:"
-        - Text widget: For task input
-        - Label: "Select task categories:"
-        - Frame with three checkboxes
-        - Frame with Add and Cancel buttons
         """
         root1.title("Add your task")
         root1.geometry("300x250")
@@ -142,9 +121,6 @@ def entertask():
         Text widget for entering task description.
     
         :type: Text
-        :attributes:
-        - width: 40 characters
-        - height: 3 lines
         """
         entry_task.pack(pady=5)
 
@@ -155,7 +131,6 @@ def entertask():
         Frame containing the category checkboxes.
     
         :type: Frame
-        :purpose: Organize checkboxes in a horizontal layout
         """
         checkbox_frame.pack(pady=5)
     
@@ -164,11 +139,6 @@ def entertask():
         Checkbox for Work category.
     
         :type: Checkbutton
-        :attributes:
-        - text: "Work"
-        - variable: work_var (IntVar)
-        - font: Arial, size 9
-        :position: Grid row 0, column 0
         """
         work_checkbox.grid(row=0, column=0, padx=10, sticky=W)
     
@@ -177,11 +147,6 @@ def entertask():
         Checkbox for Housework category.
     
         :type: Checkbutton
-        :attributes:
-        - text: "Housework"
-        - variable: housework_var (IntVar)
-        - font: Arial, size 9
-        :position: Grid row 0, column 1
         """
         housework_checkbox.grid(row=0, column=1, padx=10, sticky=W)
     
@@ -190,11 +155,6 @@ def entertask():
         Checkbox for Else category.
     
         :type: Checkbutton
-        :attributes:
-        - text: "Else"
-        - variable: else_var (IntVar)
-        - font: Arial, size 9
-        :position: Grid row 0, column 2
         """
         else_checkbox.grid(row=0, column=2, padx=10, sticky=W)
     
@@ -203,7 +163,6 @@ def entertask():
         Frame containing the Add and Cancel buttons.
     
         :type: Frame
-        :purpose: Organize buttons in a horizontal layout
         """
         button_frame.pack(pady=10)
     
@@ -289,10 +248,6 @@ try:
     Main application title label.
 
     :type: Label
-    :attributes:
-        - text: 'To-do List'
-        - font: Helvetica, 22, bold
-        - fg: Text color (#38db7d - green)
     """
     label.pack(pady=10)
 
@@ -301,7 +256,6 @@ try:
     Frame containing the task listbox and scrollbar.
 
     :type: Frame
-    :purpose: Container for listbox and scrollbar widgets
     """
     frame_task.pack(pady=10)
 
@@ -316,13 +270,6 @@ try:
     The main listbox that displays all tasks.
 
     :type: Listbox
-    :attributes:
-        - bg: Background color (black)
-        - fg: Text color (white)
-        - height: Number of visible rows (12)
-        - width: Width in characters (50)
-        - font: Text font (Helvetica)
-        - selectbackground: Background color for selected items (#4CAF50)
     """ 
     listbox_task.pack(side=LEFT)
 
@@ -331,7 +278,6 @@ try:
     Vertical scrollbar for the task listbox.
 
     :type: Scrollbar
-    :purpose: Enables scrolling through tasks when list exceeds visible area
     """
     scrollbar_task.pack(side=RIGHT, fill=Y)
     listbox_task.config(yscrollcommand=scrollbar_task.set)
@@ -348,13 +294,6 @@ try:
     Button to open the task entry window.
 
     :type: Button
-    :attributes:
-        - text: "Add task"
-        - width: 50 characters
-        - bg: Background color (#4CAF50 - green)
-        - fg: Text color (white)
-        - font: Arial, 10, bold
-    :command: Calls entertask() function when clicked
     """
     add_button.pack(pady=3)
 
@@ -369,13 +308,6 @@ try:
     Button to delete the selected task.
 
     :type: Button
-    :attributes:
-        - text: "Delete selected task"
-        - width: 50 characters
-        - bg: Background color (#f44336 - red)
-        - fg: Text color (white)
-        - font: Arial, 10, bold
-    :command: Calls deletetask() function when clicked
     """
     delete_button.pack(pady=3)
 
@@ -390,14 +322,6 @@ try:
     Button to mark the selected task as completed.
 
     :type: Button
-    :attributes:
-        - text: "Mark as completed"
-        - width: 50 characters
-        - bg: Background color (#FFC400 - yellow/orange)
-        - fg: Text color (white)
-        - font: Arial, 10, bold
-    :command: Calls markcompleted() function when clicked
-    :note: Appends " ✔" to the task text to indicate completion
     """
     complete_button.pack(pady=3)
 except Exception:
