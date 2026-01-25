@@ -240,6 +240,7 @@ def markcompleted():
                                      message="Failed to mark the task as completed")
 
 try: 
+    # START: Adapted code from DataFlair website
     label = Label(window, 
                 text='To-do List', 
                 font=('Helvetica', 22, 'bold'), 
@@ -324,6 +325,8 @@ try:
     :type: Button
     """
     complete_button.pack(pady=3)
+    #END
+
 except Exception:
     tkinter.messagebox.showerror(title="Startup Error", 
                                  message="Failed to start the application")
