@@ -101,88 +101,81 @@ def entertask():
             
         except ValueError as ve:
             tkinter.messagebox.showwarning(title="Input Error", message=str(ve))
-        except Exception as e:
-            tkinter.messagebox.showerror(title="Unexpected Error", 
-                                         message="An unexpected error occurred while adding task")
+ 
+    root1 = Toplevel()
+    """
+    The Toplevel window for adding new tasks.
     
-    try:
-        root1 = Toplevel()
-        """
-        The Toplevel window for adding new tasks.
+    :type: Toplevel
+    """
+    root1.title("Add your task")
+    root1.geometry("300x250")
     
-        :type: Toplevel
-        """
-        root1.title("Add your task")
-        root1.geometry("300x250")
+    Label(root1, text="Enter your task:", font=("Arial", 10, "bold")).pack(pady=10)
+    entry_task = Text(root1, width=40, height=3)
+    """
+    Text widget for entering task description.
     
-        Label(root1, text="Enter your task:", font=("Arial", 10, "bold")).pack(pady=10)
-        entry_task = Text(root1, width=40, height=3)
-        """
-        Text widget for entering task description.
-    
-        :type: Text
-        """
-        entry_task.pack(pady=5)
+    :type: Text
+    """
+    entry_task.pack(pady=5)
 
-        Label(root1, text="Select task categories:", font=("Arial", 10, "bold")).pack(pady=10)
+    Label(root1, text="Select task categories:", font=("Arial", 10, "bold")).pack(pady=10)
     
-        checkbox_frame = Frame(root1)
-        """
-        Frame containing the category checkboxes.
+    checkbox_frame = Frame(root1)
+    """
+    Frame containing the category checkboxes.
     
-        :type: Frame
-        """
-        checkbox_frame.pack(pady=5)
+    :type: Frame
+    """
+    checkbox_frame.pack(pady=5)
     
-        work_checkbox = Checkbutton(checkbox_frame, text="Work", variable=work_var, font=("Arial", 9))
-        """
-        Checkbox for Work category.
+    work_checkbox = Checkbutton(checkbox_frame, text="Work", variable=work_var, font=("Arial", 9))
+    """
+    Checkbox for Work category.
     
-        :type: Checkbutton
-        """
-        work_checkbox.grid(row=0, column=0, padx=10, sticky=W)
+    :type: Checkbutton
+    """
+    work_checkbox.grid(row=0, column=0, padx=10, sticky=W)
     
-        housework_checkbox = Checkbutton(checkbox_frame, text="Housework", variable=housework_var, font=("Arial", 9))
-        """
-        Checkbox for Housework category.
+    housework_checkbox = Checkbutton(checkbox_frame, text="Housework", variable=housework_var, font=("Arial", 9))
+    """
+    Checkbox for Housework category.
     
-        :type: Checkbutton
-        """
-        housework_checkbox.grid(row=0, column=1, padx=10, sticky=W)
+    :type: Checkbutton
+    """
+    housework_checkbox.grid(row=0, column=1, padx=10, sticky=W)
     
-        else_checkbox = Checkbutton(checkbox_frame, text="Else", variable=else_var, font=("Arial", 9))
-        """
-        Checkbox for Else category.
+    else_checkbox = Checkbutton(checkbox_frame, text="Else", variable=else_var, font=("Arial", 9))
+    """
+    Checkbox for Else category.
     
-        :type: Checkbutton
-        """
-        else_checkbox.grid(row=0, column=2, padx=10, sticky=W)
+    :type: Checkbutton
+    """
+    else_checkbox.grid(row=0, column=2, padx=10, sticky=W)
     
-        button_frame = Frame(root1)
-        """
-        Frame containing the Add and Cancel buttons.
+    button_frame = Frame(root1)
+    """
+    Frame containing the Add and Cancel buttons.
     
-        :type: Frame
-        """
-        button_frame.pack(pady=10)
+    :type: Frame
+    """
+    button_frame.pack(pady=10)
     
-        Button(button_frame, 
+    Button(button_frame, 
                text="Add task", 
                command=add, 
                bg="#4CAF50", 
                fg="white", 
                width=15).pack(side=LEFT, padx=5)
     
-        Button(button_frame, 
+    Button(button_frame, 
                text="Cancel", 
                command=root1.destroy, 
                bg="#f44336", 
                fg="white", 
                width=15).pack(side=LEFT, padx=5)
         
-    except Exception as e:
-        tkinter.messagebox.showerror(title="Window Error", 
-                                     message="Failed to create task entry window")
 
 def deletetask():
     """
@@ -202,9 +195,7 @@ def deletetask():
     except IndexError:
         tkinter.messagebox.showwarning(title="Selection Error", 
                                        message="Please select a task to delete!")
-    except Exception:
-        tkinter.messagebox.showerror(title="Error", 
-                                     message="Failed to delete the task")
+    
 
 def markcompleted():
     """
@@ -235,105 +226,98 @@ def markcompleted():
     except IndexError:
         tkinter.messagebox.showwarning(title="Selection Error", 
                                        message="Please select a task to mark!")
-    except Exception:
-        tkinter.messagebox.showerror(title="Error", 
-                                     message="Failed to mark the task as completed")
 
-try: 
-    # START: Adapted code from DataFlair website
-    label = Label(window, 
+ 
+# START: Adapted code from DataFlair website
+label = Label(window, 
                 text='To-do List', 
                 font=('Helvetica', 22, 'bold'), 
                 fg='#38db7d')
-    """
-    Main application title label.
+"""
+Main application title label.
 
-    :type: Label
-    """
-    label.pack(pady=10)
+:type: Label
+"""
+label.pack(pady=10)
 
-    frame_task = Frame(window)
-    """
-    Frame containing the task listbox and scrollbar.
+frame_task = Frame(window)
+"""
+Frame containing the task listbox and scrollbar.
 
-    :type: Frame
-    """
-    frame_task.pack(pady=10)
+:type: Frame
+"""
+frame_task.pack(pady=10)
 
-    listbox_task = Listbox(frame_task, 
+listbox_task = Listbox(frame_task, 
                         bg="black", 
                         fg="white", 
                         height=12, 
                         width=50, 
                         font="Helvetica",
                         selectbackground="#4CAF50") 
-    """
-    The main listbox that displays all tasks.
+"""
+The main listbox that displays all tasks.
 
-    :type: Listbox
-    """ 
-    listbox_task.pack(side=LEFT)
+:type: Listbox
+""" 
+listbox_task.pack(side=LEFT)
 
-    scrollbar_task = Scrollbar(frame_task)
-    """
-    Vertical scrollbar for the task listbox.
+scrollbar_task = Scrollbar(frame_task)
+"""
+Vertical scrollbar for the task listbox.
 
-    :type: Scrollbar
-    """
-    scrollbar_task.pack(side=RIGHT, fill=Y)
-    listbox_task.config(yscrollcommand=scrollbar_task.set)
-    scrollbar_task.config(command=listbox_task.yview)
+:type: Scrollbar
+"""
+scrollbar_task.pack(side=RIGHT, fill=Y)
+listbox_task.config(yscrollcommand=scrollbar_task.set)
+scrollbar_task.config(command=listbox_task.yview)
 
-    add_button = Button(window, 
+add_button = Button(window, 
         text="Add task", 
         width=50, 
         command=entertask, 
         bg="#4CAF50", 
         fg="white", 
         font=("Arial", 10, "bold"))
-    """
-    Button to open the task entry window.
+"""
+Button to open the task entry window.
 
-    :type: Button
-    """
-    add_button.pack(pady=3)
+:type: Button
+"""
+add_button.pack(pady=3)
 
-    delete_button = Button(window, 
+delete_button = Button(window, 
         text="Delete selected task", 
         width=50, 
         command=deletetask,
         bg="#f44336", 
         fg="white", 
         font=("Arial", 10, "bold"))
-    """
-    Button to delete the selected task.
+"""
+Button to delete the selected task.
 
-    :type: Button
-    """
-    delete_button.pack(pady=3)
+:type: Button
+"""
+delete_button.pack(pady=3)
 
-    complete_button = Button(window, 
+complete_button = Button(window, 
         text="Mark as completed", 
         width=50, 
         command=markcompleted,
         bg="#FFC400", 
         fg="white", 
         font=("Arial", 10, "bold"))
-    """
-    Button to mark the selected task as completed.
+"""
+Button to mark the selected task as completed.
 
-    :type: Button
-    """
-    complete_button.pack(pady=3)
-    #END
-
-except Exception:
-    tkinter.messagebox.showerror(title="Startup Error", 
-                                 message="Failed to start the application")
+:type: Button
+"""
+complete_button.pack(pady=3)
+#END
 
 
 
-try:
-    window.mainloop()
-except Exception:
-    pass
+
+
+
+window.mainloop()
